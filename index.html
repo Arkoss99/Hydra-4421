@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darknet</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <!--Nav / top menu hry-->
+    <div class="navbar">
+        <div class="left-section">
+            <img src="img/money.png" alt="Money" class="MoneyL">
+            <span id="money">0</span>
+        </div>
+        <div class="center-section">
+            <span id="time">12:00 PM</span>
+        </div>
+        <div class="right-section">
+            <div class="status-icons">
+                <img src="img/wifi-signal.png" alt="Wi-Fi" class="status-icon">
+                <img src="img/power-icon.png" alt="Power" class="status-icon">
+            </div>
+        </div>
+    </div>
+    <!--Desktop ikony-->
+    <div class="desktop" id="desktop">
+        <div class="icon" id="icon1">
+            <img src="img/notebook.png"  class="icon-image">
+            <span class="icon-label">Textbook</span>
+        </div>
+        <div class="icon" id="openButton">
+            <img src="img/internet.png" class="icon-image">
+            <span class="icon-label">Darknet</span>
+        </div>
+        <!-- Další ikony zde -->
+    </div>
+    
+    <!-- Simulované okno pro vyhledávač -->
+    <div id="browserWindow">
+        <div class="browserTop">
+            <p style="padding-left: 5px;">Darknet vyhledávač</p>
+            <span id="closeButton">X</span>
+        </div>
+        <div class="browserSearch">
+            <input type="text" placeholder="Zadejte dotaz..." style="width: 80%; padding: 5px; ">
+            <button style="padding: 5px;">Hledat</button>
+        </div>
+        <h2>Darknet</h2>
+    </div>
+    <script src="script/script.js"></script>
+</body>
+</html>
