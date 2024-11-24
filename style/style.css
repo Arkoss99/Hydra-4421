@@ -1,0 +1,565 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: rgb(50, 62, 100);
+  font-weight: 600;
+}
+
+.navbar, .browserTop, .notepadTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #292929;
+  color: #fff;
+  cursor: move;
+  user-select: none;
+}
+
+.navbar {
+  padding: 10px 20px;
+  outline: 2px white solid;
+}
+
+.left-section, .center-section, .right-section, .status-icons {
+  display: flex;
+  align-items: center;
+}
+
+.MoneyL, .status-icon {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.center-section .icon {
+  font-size: 24px;
+  margin-right: 5px;
+}
+
+.counter {
+  font-size: 16px;
+  padding: 3px 8px;
+  background-color: #444;
+  border-radius: 50%;
+}
+
+.right-section {
+  font-size: 14px;
+}
+
+.status-icons {
+  margin-left: 20px;
+}
+
+.icon {
+  width: 100px;
+  text-align: center;
+  cursor: grab;
+  padding: 10px;
+}
+
+.icon img {
+  width: 50px;
+  height: 50px;
+}
+
+.icon-label {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.desktop {
+  display: flex;
+  flex-direction: column;
+}
+
+/* "Okno" ve webu */
+#browserWindow, #notepadWindow {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  color: black;
+  z-index: 1;
+  border: 2px #ffa86d inset;
+}
+.browserIcon {
+  width: 25px;
+  padding: 2px;
+  margin-right: 5px;
+  margin-top: 2px;
+}
+#browserWindow {
+  top: 50px;
+  left: 50px;
+  width: 960px;
+  height: 800px;
+}
+
+#notepadWindow {
+  top: 100px;
+  left: 100px;
+  width: 300px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+#closeButton, #closeNotepad {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  color: #ffa86d;
+  border: 2px #666 inset;
+  padding: 0 10px;
+}
+
+.browserSearch {
+  display: flex;
+  justify-content: center;
+  background-color: #393939;
+  border-top: 2px white solid;
+}
+
+.browserContent {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+#pageContent {
+  padding: 10px;
+  background-color: #292929;
+  color: white;
+  border: 1px solid #ffa86d;
+}
+
+li {
+  list-style: none;
+}
+
+#notepadContent {
+  flex-grow: 1;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  resize: none;
+  width: 100%;
+  height: 408px;
+}
+
+/* Styl emailu zůstává nezměněný */
+#emailWindow {
+  display: none;
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  width: 600px;
+  height: 400px;
+  background-color: #fff;
+  color: black;
+  z-index: 1;
+  border: 2px #ffa86d inset;
+}
+
+.emailTop { 
+  background-color: #292929;
+  color: white;
+  padding: 10px;
+  cursor: move;
+  user-select: none;
+}
+
+#emailContent {
+  display: flex;
+  justify-content: space-between;
+  width: 596px;
+  height: 358px;
+  overflow: auto;
+}
+
+#closeEmail {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+  color: #ffa86d ;
+  border: 2px #666666 inset;
+  padding: 0px 10px 0px 10px;
+}
+
+#inbox {
+  width: 40%;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+}
+
+#emailView {
+  width: 55%;
+  padding: 10px;
+}
+
+#emailList li {
+  cursor: pointer;
+  list-style-type: none;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  
+}
+
+#emailList li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Styl pro dark net vzhled obsahu */
+.content {
+  overflow-y: auto; /* Vertikální posuvník, pokud obsah přesahuje */
+  box-sizing: border-box;
+  height: 725px;
+}
+.contentMeat {
+  background-color: #1a1a1a; /* Tmavé pozadí */
+  padding: 20px;
+  color: #39ff14; /* Neonově zelená pro text */
+}
+
+/* Nadpisy v obsahu */
+.content h2 {
+  color: #ff4d4d; /* Červená pro zvýraznění hlavního nadpisu */
+  font-size: 1.5em;
+}
+
+.content h3 {
+  color: #39ff14; /* Zelená pro sekundární nadpisy */
+  font-size: 1.3em;
+}
+
+.content h4 {
+  color: #00ccff; /* Cyan pro název produktu */
+  font-size: 1.1em;
+}
+
+/* Text odstavců */
+.content p {
+  line-height: 1.5;
+}
+.contentMeat p {
+  color: #e0e0e0; /* Světlejší šedá pro text */
+}
+
+/* Styl produktů */
+.content .product {
+  padding: 10px;
+  background-color: #1f1f1f;
+  border: 1px solid #39ff14; /* Neon zelený obrys */
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.content .product p {
+  margin: 5px 0;
+}
+
+/* Tlačítka */
+.content button {
+  background-color: #39ff14;
+  color: #0a0a0a;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 3px;
+}
+
+.content button:hover {
+  background-color: #00ffae; /* Světlejší neon pro efekt při najetí */
+}
+
+/* Styl recenzí */
+.content .review {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #2a2a2a; /* Mírně světlejší tmavé pozadí */
+  border-left: 3px solid #39ff14; /* Levý obrys pro vizuální oddělení */
+}
+
+.content .review p {
+  color: #39ff14; /* Neon zelený text */
+}
+
+/* Varování */
+.content p[style*="italic"] {
+  color: #ff4d4d; /* Červená barva pro varování */
+  font-style: italic;
+  font-size: 0.9em;
+  font-family: 'Courier New', Courier, monospace; /* Konzolový font */
+}
+
+#inspectWindow {
+  display: none;
+  position: absolute;
+  width: 800px;
+  height: 600px;
+  background-color: #fff;
+  color: black;
+  z-index: 1;
+  border: 2px #ffa86d inset;
+  overflow: auto;
+}
+
+/* Horní část okna Inspect se stylem jako emailTop */
+.inspectTop {
+  background-color: #292929;
+  color: white;
+  padding: 10px;
+  cursor: move;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Styl pro obsah Inspect okna */
+#inspectContent {
+  width: 796px;
+  height: 558px;
+  padding: 10px;
+  background-color: #333;
+  color: #0f0;
+  font-family: monospace;
+  overflow: auto;
+}
+
+.contentFather {
+  background-color: #292929;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.imgDiv {
+  display: flex;
+  flex-direction: row;
+}
+.contentDarkchat {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+#newPostSection, #postsSection {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+#postContent, #postTitle {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.post {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.commentSection {
+  margin-top: 10px;
+}
+
+.comment {
+  margin-top: 5px;
+  padding: 5px;
+  border-top: 1px solid #ddd;
+}
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+.popup .show {
+  visibility: visible;
+  animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+textarea {
+  resize: none;
+}
+
+/* Nastavení pevné velikosti obsahu s možností scrollování */
+.contentMarket {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f5f5f5;
+  overflow-y: auto; /* Vertikální posuvník, pokud obsah přesahuje */
+  box-sizing: border-box;
+  height: 725px;
+}
+
+/* Sidebar (fixní velikost pro lepší layout) */
+.sidebar {
+  float: left;
+  width: 20%;
+  max-height: 400px; /* Sidebar s pevnou výškou */
+  overflow-y: auto; /* Pokud je obsah větší, umožní scrollování */
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+/* Mřížka produktů */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.itemM {
+  width: calc(33.333% - 10px);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+.headerM h1 {
+  color: red;
+}
+.headerM span {
+  color: #333;
+}
+.itemM img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+.itemM p {
+  color: #474747;
+}
+
+/* Modal - základní styl */
+.modal {
+  display: none; 
+  position: absolute; 
+  z-index: 10;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-width: 400px;
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 5px;
+  box-shadow: 50px 50px 50px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  text-align: center;
+}
+
+/* Obsah modalu */
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Zavírací tlačítko */
+.modal-content .close {
+  color: #aaa;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  float: right;
+  margin-top: -10px;
+}
+
+.modal-content .close:hover {
+  color: black;
+}
+
+
+/* Modal */
+.gameModal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%; /* Plná šířka */
+  height: 100%; /* Plná výška */
+  overflow: auto; /* Povolit posouvání, pokud je obsah příliš velký */
+  background-color: rgb(0,0,0); /* Fallback barva */
+  background-color: rgba(0,0,0,0.4); /* Černé pozadí s průhledností */
+}
+.gameModal-closeBtn{
+  display: flex; 
+  position: absolute;
+
+}
+.gameModal-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% od vrchu a centrované */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%; 
+  height: 30%;
+  text-align: center;
+}
+
+.close {
+  color: #686868;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+#helpBtn, #endGameBtn {
+  background-color: #474747;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 16px;
+}
