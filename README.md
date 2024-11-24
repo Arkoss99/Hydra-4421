@@ -1,8 +1,8 @@
-# 🕵️ Dark Web Simulator
+# 🕵️ Hydra 4421
 
 ## 🔍 Popis projektu
 
-**Dark Web Simulator** je interaktivní simulace, která napodobuje prostředí temného webu inspirovaná hrami jako *Welcome to the Game*. Projekt zahrnuje simulovaný prohlížeč, který umožňuje prozkoumávat různé stránky, jako je fiktivní tržiště "Silk Road", nabízející produkty a služby v anonymním a bezpečném prostředí. Součástí simulace je také práce s uživatelským rozhraním oken, modalů a dynamickým obsahem.
+**Hydra 4421** je interaktivní simulace, která napodobuje prostředí dark webu inspirovaná hrami jako *Welcome to the Game*. Projekt zahrnuje simulovaný prohlížeč, který umožňuje prozkoumávat různé stránky, jako je fiktivní tržiště "Silk Road", nabízející produkty a služby v anonymním a bezpečném prostředí. Součástí simulace je také práce s uživatelským rozhraním oken, modalů a dynamickým obsahem.
 
 ### 🛠️ Klíčové funkce
 - **Simulovaný webový prohlížeč**:
