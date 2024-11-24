@@ -24,8 +24,8 @@
 ├── index.html          Hlavní HTML soubor 
 ├── style.css           CSS soubor pro stylování
 ├── script.js           JavaScript pro logiku a dynamiku 
-└── img/                Obrázky pro stránky a produkty ```
-
+└── img/                Obrázky pro stránky a produkty 
+```
 ## 🛠️ Technologie
 - HTML5: Struktura a obsah.
 - CSS3: Stylování a responzivní design.
