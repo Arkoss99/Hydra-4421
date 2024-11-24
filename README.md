@@ -20,10 +20,10 @@
 
 ## 📂 Struktura projektu
 
-/dark-web-simulator ```
-├── index.html          Hlavní HTML soubor ```
-├── style.css           CSS soubor pro stylování ```
-├── script.js           JavaScript pro logiku a dynamiku ```
+```/dark-web-simulator 
+├── index.html          Hlavní HTML soubor 
+├── style.css           CSS soubor pro stylování
+├── script.js           JavaScript pro logiku a dynamiku 
 └── img/                Obrázky pro stránky a produkty ```
 
 ## 🛠️ Technologie
