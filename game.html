@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darknet</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <!--Nav / top menu hry-->
+    <div class="navbar">
+        <div class="left-section">
+            <img src="img/money.png" alt="Money" class="MoneyL">
+            <span id="money">0</span>
+        </div>
+        <div class="center-section">
+            <span id="time">12:00 PM</span>
+        </div>
+        <div class="right-section">
+            <div class="status-icons">
+                <img src="img/wifi-signal.png" alt="Wi-Fi" class="status-icon">
+                <img onclick="gameModalicon(); " src="img/power-icon.png" alt="Power" class="status-icon">
+            </div>
+        </div>
+    </div>
+    <!--Desktop ikony-->
+    <div class="desktop" id="desktop">
+        <div class="icon" id="icon1">
+            <img src="img/notebook.png"  class="icon-image">
+            <span class="icon-label">Textbook</span>
+        </div>
+        <div class="icon" id="openButton">
+            <img src="img/internet.png" class="icon-image">
+            <span class="icon-label">Darknet</span>
+        </div>
+        <div class="icon" id="openEmail">
+            <img src="img/email.png" class="icon-image">
+            <span class="icon-label">EZmail</span>
+        </div>
+        <div class="icon" id="openHydra">
+            <img src="img/hydra.png" class="icon-image">
+            <span class="icon-label">Hydra Tunnel</span>
+        </div>
+    </div>
+    
+    <!-- Simulované okno pro vyhledávač -->
+    <div onclick="selectBrowser();" id="browserWindow">
+        <div class="browserTop">
+            <p style="padding-left: 5px;">Darknet vyhledávač</p>
+            <span id="closeButton">X</span>
+        </div>
+        <div class="browserSearch">
+            <a href="#" onclick="navigatePage('home')"><img src="img/home.png" class="browserIcon"></a>
+            <input type="text" id="searchInput" placeholder="Zadejte dotaz..." style="width: 70%; padding: 5px;">
+            <button onclick="searchQuery()" style="padding: 5px;">Hledat</button>
+            <button onclick="inspectPage()" style="padding: 5px; margin-left: 10px;">Inspect</button>
+        </div>
+        <div id="browserContent">
+<p style="padding: 5px; display: flex; justify-content: center;">
+    Vítej v Darknetu... klikni na home button pro zobrazení první wiki.
+</p>
+        </div>
+    </div>
+    
+        <!-- Poznámkový blok -->
+        <div onclick="selectNotepad();" id="notepadWindow" style="display: none;">
+            <div class="notepadTop">
+                <p>Textbook</p>
+                <span id="closeNotepad">X</span>
+            </div>
+            <textarea id="notepadContent" placeholder="Zde můžeš psát..."></textarea>
+        </div>
+        
+  <!-- Okno emailové aplikace -->
+    <div onclick="selectEmail();" id="emailWindow" class="appWindow">
+        <div class="emailTop">
+            <p>EZmail</p>
+            <span id="closeEmail">X</span>
+        </div>
+        <div id="emailContent">
+            <!-- Seznam doručených zpráv -->
+            <div id="inbox">
+                <h2>Doručené zprávy</h2>
+                <ul id="emailList">
+                </ul>
+            </div>
+            <div id="emailView">
+                <h2>Email</h2>
+                <p id="emailDetail">Klikněte na email, aby se zobrazil obsah.</p>
+            </div>
+        </div>
+    </div>
+    
+      <!-- Okno Hydra aplikace -->
+      <div id="hydraWindow" style="display: none;">
+        <div class="hydraTop">
+            <p>Hydra Tunnel</p>
+            <span id="closeHydra">X</span>
+        </div>
+        <textarea id="hydraContent" placeholder="Zde zadej 5 klíčů podle pořadí v Emailu..."></textarea>
+        <button id="hydraButton" onclick="sendHydra()">Odeslat</button>
+    </div>
+
+
+        <!-- Okno Inspect -->
+    <div onclick="selectInspect();" id="inspectWindow" style="display: none;">
+        <div class="inspectTop">
+            <p>Inspect</p>
+            <span id="closeButton" onclick="closeInspect()">X</span>
+        </div>
+        <pre id="inspectContent" style="padding: 10px; background-color: #ffffff; color: rgb(0, 0, 0);">
+        </pre>
+    </div>
+    <!--Modal při pauznutí hry-->
+    <div id="gameModal" class="gameModal">
+        <div class="gameModal-content">
+            <div class="gameModal-closeBtn">
+            <span class="close">&times;</span>
+            </div>
+            <h2>Game paused</h2>
+            <button id="helpBtn">Help</button>
+            <button id="endGameBtn">End Game</button>
+        </div>
+    </div>
+    <script src="script/script.js"></script>
+</body>
+</html>

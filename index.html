@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydra GAME</title>
+    <style>
+body {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    color: #ffffff;
+    background-image: url("img/menu.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+h1, .gameBtn {
+    position: relative;
+    z-index: 2;
+}
+
+h1 {
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+    align-self: flex-end;
+}
+
+.gameBtn {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    padding: 0 20px 20px 0;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+button {
+    background-color: transparent; 
+    color: #ffffff; 
+    border: 2px solid #ffffff; 
+    padding: 15px 30px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    text-shadow: 1px 1px #000000; 
+}
+
+
+.modal {
+    display: none;
+    position: fixed; 
+    z-index: 1000;
+    left: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #242424;
+    margin: 15% auto; 
+    margin-top: 100px;
+    padding: 20px;
+    border-radius: 25px;
+    border: 5px solid #000000;
+    width: 50%;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: transparent;
+    transform: scale(1.1);
+}
+
+button:active {
+    background-color: transparent; 
+    transform: scale(0.9); 
+}
+
+.settings {
+    padding: 20px;
+    color: #fff;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.settings h2 {
+    color: #ffffff; 
+    font-size: 2em;
+}
+
+.settings label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: large;
+    font-weight: 600;
+}
+
+.settings input[type="checkbox"],
+.settings input[type="range"],
+.settings select {
+    margin-bottom: 20px;
+}
+.difficulty-select {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 2px solid #ffffff; 
+    border-radius: 8px;
+    background-color: #272727; 
+    color: #fff; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px; 
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); 
+}
+
+.difficulty-select:hover {
+    border-color: #3498db; 
+    box-shadow: 0 2px 6px rgba(52, 152, 219, 0.3);
+}
+
+.difficulty-select option {
+    padding: 10px;
+    background-color: #272727; 
+    color: #fff; 
+}
+
+.difficulty-select:focus option {
+    background-color: #272727; 
+}
+.footer-text {
+    position: fixed;
+    left: 10px;     
+    bottom: 10px;    
+    font-size: 12px; 
+    color: #838383;     
+    font-family:'Courier New', Courier, monospace ;
+    z-index: 9999;  
+}
+
+    </style>
+</head>
+<body>
+
+  <div class="gameBtn">
+    <h1>Hydra GAME</h1>
+    <button id="startBtn" onclick="startGame()">Start Game</button>
+    <button id="startBtn" onclick="openSettings()">Settings</button>
+    <button id="startBtn" onclick="openStory()">Story</button>
+  </div>
+
+  <!-- Modal pro nastavení -->
+  <div id="settingsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeSettings()">&times;</span>
+      <div class="settings">
+        <h2>Settings</h2>
+        <label for="volume">Hlasitost:</label>
+        <input type="range" id="volume" min="0" max="100" value="50" oninput="adjustVolume(this.value)">
+        <button style="scale: 0.7; color: #fff; border-color: #fff;" onclick="testVolume()">Test Zvuku</button><br>
+
+        
+        <label for="difficulty">Obtížnost:</label>
+        <select id="difficulty" class="difficulty-select" onchange="changeDifficulty(this.value)">
+            <option value="normal">Normal (15 min)</option>
+            <option value="hard">Hard (10 min)</option>
+            <option value="extreme">Extreme (5 min)</option>
+        </select>
+        <section class="Tutorial">
+            <h2>Tutorial</h2>
+            <p style="width: 880px; font-family:Arial, Helvetica, sans-serif; font-size: 18px;">Kody které najdeš musíš dát do Hydra tunnelu bez 1 -, 2 - atd.</p>
+            <img src="img/codes.png" alt="Tutorial" style="width: 30%;">
+            <img src="img/codes2.png" alt="Tutorial" style="width: 40%;">
+            <p style="width: 880px; font-family:Arial, Helvetica, sans-serif; font-size: 18px;">kody na fotkách nejsou ty co najdeš ve hře.. a také se občas koukni do Ezmailu věř mi.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+  <!---STORY-->
+  <div id="storyModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeStory()">&times;</span>
+      <div class="settings">
+        <section class="Story">
+            <h2>Příběh hry...</h2>
+            <p style="width: 880px; font-family:Arial, Helvetica, sans-serif; font-size: 18px;">Hráč je postaven do role mladého studenta, který se rozhodne připojit k tajemné online hackerské skupině zvané Hydra. Tato skupina je známá svou mocí a nelegálními aktivitami na Darkwebu. Aby se mohl připojit, musí nejprve splnit náročnou výzvu: najít všech pět klíčů, které jsou roztroušeny po temných koutech internetu, na speciálních stránkách, které jsou přístupné pouze těm, kteří mají dostatek znalostí a odhodlání.
+              Hra se zaměřuje na to, jak hráč prochází těmito nebezpečnými webovými stránkami, čelí různým výzvám a hledá stopy, které ho dovedou ke klíčům. Každý klíč je skrytý v šifrovaných souborech, nástrahách a překážkách, které si žádají velkou míru soustředění a dovedností v navigaci po Darkwebu.
+              Avšak čas je proti hráči. Hráč zjistí, že pokud klíče nebudou nalezeny do půlnoci, ztratí svou šanci připojit se k Hydře, a co je horší, bude mu hrozit smrt. Najatý vrah, který je poslán, aby zlikvidoval každého, kdo neúspěšně hledá klíče, se přiblíží a v okamžiku, kdy odbije půlnoc, zabije hráče.
+              Hráč musí překonat své limity a včas najít všechny klíče, než bude jeho osud zpečetěn a jeho život navždy ukončen. Během této výzvy jsou hráči vystaveni nejen technologickým a logickým hádankám, ale i psychologickému tlaku, protože každý klíč přináší novou informaci, která jej přiblíží k rozhodující chvíli — a ke smrti, pokud nebude včas úspěšný.
+            </p>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="footer-text">
+    @KOZELGAMES 2024
+</div>
+  <script src="script/script.js"></script>
+</body>
+</html>
